@@ -47,7 +47,19 @@ pub fn main() !void {
         const diff = @abs(fi - si);
         accum += diff;
     }
-    std.debug.print("{}\n", .{accum});
+    std.debug.print("Sum of diffs: {}\n", .{accum});
+
+    var sim_score: i32 = 0;
+    for (first.items) |f| {
+        var count: i32 = 0;
+        for (second.items) |s| {
+            if (s == f) {
+                count += 1;
+            }
+        }
+        sim_score += count * f;
+    }
+    std.debug.print("Similarity score: {}\n", .{sim_score});
 }
 
 test "simple test" {
